@@ -1,0 +1,24 @@
+# Created using `k create deployment test --image=nginx --replicas=3 --dry-run=client -o yaml > deploy.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  # labels are useful for selecting things later
+  labels:
+    app: test
+  # name of the deployment
+  name: test
+spec:
+  replicas: 3
+  # selector tells the deployment which pods it is managing
+  selector:
+    matchLabels:
+      app: test
+  # template for the pods this deployment will create; the below maps to the pod manifest I created in nginx.yaml
+  template:
+    metadata:
+      labels:
+        app: test
+    spec:
+      containers:
+      - image: nginx
+        name: nginx

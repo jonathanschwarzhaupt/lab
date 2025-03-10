@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: update
+  name: update
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: update
+  template:
+    metadata:
+      labels:
+        app: update
+    spec:
+      containers:
+        - image: nginx:1.25
+          name: nginx
+  strategy:
+    type: Recreate

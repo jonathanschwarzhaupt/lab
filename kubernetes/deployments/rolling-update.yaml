@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: update
+  name: update
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: update
+  template:
+    metadata:
+      labels:
+        app: update
+    spec:
+      containers:
+        - image: nginx:1.27
+          name: nginx
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      # Keep all pods available and update one-by-one
+      # I could ommit maxUnavailable here, but let's keep it
+      maxUnavailable: 0
+      maxSurge: 1
