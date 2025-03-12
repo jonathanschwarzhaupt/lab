@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: linkding
+  name: linkding
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: linkding
+  template:
+    metadata:
+      labels:
+        app: linkding
+    spec:
+      containers:
+      - image: sissbruecker/linkding:1.39.1
+        name: linkding
+        ports:
+        - containerPort: 9090
+        volumeMounts:
+          - mountPath: /scratch
+            name: scratch-volume
+      - image: nginx
+        name: nginx
+        volumeMounts:
+          - mountPath: /scratch
+            name: scratch-volume
+      volumes:
+        - name: scratch-volume
+          emptyDir:
+            sizeLimit: 500Mi
