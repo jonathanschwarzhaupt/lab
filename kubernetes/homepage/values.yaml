@@ -6,12 +6,12 @@ config:
           href: https://github.com/jonathanschwarzhaupt
   services:
     - Household:
-      - Mealie:
+      - Cookbook:
           href: http://192.168.178.108:9000
           description: Let's get cooking
-      - Recipes:
-          href: https://www.cookwell.com/
-          description: Insipration and articles
+      - Smart Home:
+          href: http://192.168.178.108:3001
+          description: Turn on the lights!
     - Admin:
       - Monitoring:
           href: http://192.168.178.108:3000/d/k8s_views_ns
