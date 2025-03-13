@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: homeassistant
+  name: homeassistant
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: homeassistant
+  template:
+    metadata:
+      labels:
+        app: homeassistant
+    spec:
+      containers:
+      - image: homeassistant/home-assistant:2025.3.2
+        name: homeassistant
+        ports:
+        - containerPort: 8123
+        volumeMounts:
+        - mountPath: /config
+          name: homeassistant-data
+        - mountPath: etc/localtime
+          name: homeassistant-data-ro
+        - mountPath: /run/dbus
+          name: homeassistant-data-ro
+      volumes:
+      - name: homeassistant-data
+        persistentVolumeClaim:
+          claimName: homeassistant-data
+      # 'fictional' read onyl pvc
+      - name: homeassistant-data-ro
+        persistentVolumeClaim:
+          claimName: homeassistant-data-ro
