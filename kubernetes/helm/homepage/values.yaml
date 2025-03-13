@@ -1,0 +1,15 @@
+config:
+  bookmarks:
+    - Developer:
+      - Github:
+        - abbr: GH
+          href: https://github.com/jonathanschwarzhaupt
+  services:
+    - Household:
+      - Recipes:
+          href: http://localhost:9000
+          description: Let's get cooking
+    - Admin:
+      - My admin area:
+          href: https://google.com
+          description: Go to the internet
