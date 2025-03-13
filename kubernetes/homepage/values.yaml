@@ -7,12 +7,12 @@ config:
   services:
     - Household:
       - Mealie:
-          href: http://localhost:9000
+          href: http://192.168.178.108:9000
           description: Let's get cooking
       - Recipes:
           href: https://www.cookwell.com/
           description: Insipration and articles
     - Admin:
-      - My admin area:
-          href: https://google.com
-          description: Go to the internet
+      - Monitoring:
+          href: http://192.168.178.108:3000/d/k8s_views_ns
+          description: Grafana Dashboards

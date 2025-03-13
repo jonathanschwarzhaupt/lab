@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: homepage
+  name: homepage-loadbalancer
+  namespace: homepage
+spec:
+  ports:
+  - port: 4000
+    protocol: TCP
+    targetPort: 3000
+  selector:
+    app.kubernetes.io/instance: homepage
+    app.kubernetes.io/name: homepage
+  type: LoadBalancer
