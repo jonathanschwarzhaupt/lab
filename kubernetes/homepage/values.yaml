@@ -1,14 +1,17 @@
 config:
   bookmarks:
     - Developer:
-      - Github:
+      - My Github Repos:
         - abbr: GH
           href: https://github.com/jonathanschwarzhaupt
   services:
     - Household:
-      - Recipes:
+      - Mealie:
           href: http://localhost:9000
           description: Let's get cooking
+      - Recipes:
+          href: https://www.cookwell.com/
+          description: Insipration and articles
     - Admin:
       - My admin area:
           href: https://google.com
