@@ -29,3 +29,10 @@ To fix the issue, I added two env values to the `x-airflow-common` service templ
 And it did the trick! 
 
 Interestingly, the `apache/airflow:3.0.0` image comes with a number of example DAGs! I did not know this and it was fun to explore the new asset-based scheduling DAGs!
+
+## Links
+- https://airflow.apache.org/blog/airflow-three-point-oh-is-here/
+- https://airflow.apache.org/docs/apache-airflow/3.0.0/release_notes.html#airflow-3-0-0-2025-04-22
+- https://cwiki.apache.org/confluence/display/AIRFLOW/Airflow+3.0
+- https://airflow.apache.org/docs/apache-airflow/stable/howto/docker-compose/index.html
+- https://stackoverflow.com/questions/74952367/security-token-error-in-docker-compose-up-command
