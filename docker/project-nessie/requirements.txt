@@ -1,0 +1,4 @@
+pyiceberg
+pyarrow
+s3fs
+marimo

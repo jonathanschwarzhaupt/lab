@@ -1,0 +1,49 @@
+services:
+  nessie-server:
+    image: ghcr.io/projectnessie/nessie:0.103.3
+    container_name: nessie-server
+    ports:
+      - "19120:19120"
+    depends_on:
+      - minio
+    environment:
+      - nessie.version.store.type=IN_MEMORY
+      - nessie.catalog.default-warehouse=warehouse
+      - nessie.catalog.warehouses.warehouse.location=s3://my-bucket/
+      - nessie.catalog.service.s3.default-options.endpoint=http://minio:9000/
+      - nessie.catalog.service.s3.default-options.external-endpoint=http://localhost:9000
+      - nessie.catalog.service.s3.default-options.access-key=urn:nessie-secret:quarkus:nessie.catalog.secrets.access-key
+      - nessie.catalog.service.s3.default-options.path-style-access=true
+      - nessie.catalog.service.s3.default-options.auth-type=STATIC
+      - nessie.catalog.secrets.access-key.name=admin
+      - nessie.catalog.secrets.access-key.secret=password
+      - nessie.catalog.service.s3.default-options.region=eu-west-1
+      - nessie.server.authentication.enabled=false
+
+  minio:
+    image: quay.io/minio/minio
+    container_name: minio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      - MINIO_ROOT_USER=admin
+      - MINIO_ROOT_PASSWORD=password
+      - MINIO_REGION=eu-west-1
+    entrypoint: >
+      /bin/sh -c "
+      minio server /data --console-address ':9001' &
+      sleep 10;
+      mc alias set myminio http://localhost:9000 admin password;
+      mc mb myminio/my-bucket --ignore-existing;
+      tail -f /dev/null"
+
+  nessie-cli:
+    image: ghcr.io/projectnessie/nessie-cli:0.103.3
+    container_name: nessie-cli
+    stdin_open: true   # -i
+    tty: true          # -t
+    depends_on:
+      - nessie-server
+    profiles:
+      - cli
