@@ -59,3 +59,5 @@ lab/
   - linkding: Manifests related to [Linkding](https://github.com/sissbruecker/linkding). Runs in my homelab
   - mealie: Manifests related to [mealie](https://github.com/mealie-recipes/mealie). Potential to integrate in my homelab
   - Monitoring: Helm chart for the kube-prometheus-stack. Runs in my homelab
+- Bicep
+  - `WIP`: Following the [3-part Bicep training](https://learn.microsoft.com/en-us/training/paths/fundamentals-bicep/) on Azure learn.
