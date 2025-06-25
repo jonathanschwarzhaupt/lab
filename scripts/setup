@@ -1,3 +1,6 @@
 #!/bin/bash
 
 /usr/local/bin/mise trust /workspaces/lab/mise.toml && /usr/local/bin/mise install
+
+# Install Claude CLI globally
+npm install -g @anthropic-ai/claude-code

@@ -1,3 +1,5 @@
 [tools]
 python = "3.10.11"
+uv = "latest"
 kubectl = "latest"
+node = "latest"
