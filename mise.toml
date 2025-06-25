@@ -3,3 +3,7 @@ python = "3.10.11"
 uv = "latest"
 kubectl = "latest"
 node = "latest"
+
+[tasks.install-claude]
+run = "npm install -g @anthropic-ai/claude-code"
+description = "Install Claude CLI globally"

@@ -1,6 +1,8 @@
 #!/bin/bash
 
-/usr/local/bin/mise trust /workspaces/lab/mise.toml && /usr/local/bin/mise install
-
-# Install Claude CLI globally
-npm install -g @anthropic-ai/claude-code
+# activate the mise environment
+eval "$(mise activate bash)"
+# trust the workspace and install
+mise trust /workspaces/lab/mise.toml && mise install
+# install other tools through mise tasks
+mise run install-claude
