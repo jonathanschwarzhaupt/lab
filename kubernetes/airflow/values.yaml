@@ -1,0 +1,109 @@
+images:
+  airflow:
+    repository: ghcr.io/jonathanschwarzhaupt/plumbing-airflow
+    tag: v0.3-arm64
+
+# Ingress configuration
+ingress:
+  # Configs for the Ingress of the API Server
+  apiServer:
+    enabled: true
+    ingressClassName: "traefik"
+    path: "/"
+    pathType: "Prefix"
+    hosts:
+      - airflow.jonathanschwarzhaupt.net
+    #   # The hostname for the web Ingress (templated)
+    # - name: ""
+    #   # configs for API Server Ingress TLS
+    #   tls:
+    #     # Enable TLS termination for the API Server Ingress
+    #     enabled: false
+    #     # the name of a pre-created Secret containing a TLS private key and certificate
+    #     secretName: ""
+
+    # The Ingress Class for the API Server Ingress (used only with Kubernetes v1.19 and above)
+
+# Set static fernet key
+# fernetKey: "secure-fernet-key"
+# fernet key must be 32 url-safe base64-encoded bytes
+fernetKey: "uMvc1L1pLT3-zWp-yNGYz87UohLEP_SvZo9nrojPVEI="
+
+# Set Redis password
+redis:
+  password: "secure-redis-password"
+
+# Enable persistent logs
+logs:
+  persistence:
+    enabled: false
+    # enabled: true
+    # size: 5Gi
+    # storageClassName: "local-path"
+
+# Worker configurations with extra volume mounts
+workers:
+  env:
+    - name: COMDIRECT__TURSO_PATH
+      value: "/opt/airflow/database/comdirect"
+    - name: COMDIRECT_CLIENT_ID
+      value: XXX
+    - name: COMDIRECT_CLIENT_SECRET
+      value: XXX
+    - name: COMDIRECT_USERNAME
+      value: "1234"
+    - name: COMDIRECT_PASSWORD
+      value: "1234"
+    - name: TURSO_SYNC_URL
+      value: "XXX"
+    - name: TURSO_AUTH_TOKEN
+      value: "XXX"
+
+  # Volume claim templates for persistent SQLite storage
+  volumeClaimTemplates:
+    - metadata:
+        name: "comdirect-data"
+      spec:
+        storageClassName: "local-path"
+        accessModes:
+          - "ReadWriteOnce"
+        resources:
+          requests:
+            storage: "2Gi"
+  # Mount the SQLite volume
+  extraVolumeMounts:
+    # - name: logs
+    #   mountPath: "/opt/airflow/logs"
+    - name: "comdirect-data"
+      mountPath: "/opt/airflow/database/comdirect"
+
+  # Log groomer configuration for Airflow Celery workers
+  logGroomerSidecar:
+    enabled: true
+    retentionDays: 3
+
+  persistence:
+    enabled: true
+    size: 3Gi
+
+# Airflow scheduler settings
+scheduler:
+  logGroomerSidecar:
+    enabled: true
+    retentionDays: 3
+
+# Airflow Triggerer Config
+triggerer:
+  logGroomerSidecar:
+    enabled: true
+    retentionDays: 3
+
+  persistence:
+    enabled: true
+    size: 3Gi
+
+# Airflow Dag Processor Config
+dagProcessor:
+  logGroomerSidecar:
+    enabled: true
+    retentionDays: 3
