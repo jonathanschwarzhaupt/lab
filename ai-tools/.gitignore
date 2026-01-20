@@ -1,2 +1,7 @@
-__marimo__/
+*.db
+*.db-info
 .env
+.env.turso
+__marimo__
+.logfire/
+.venv/

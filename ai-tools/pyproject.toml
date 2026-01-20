@@ -5,9 +5,11 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
+    "libsql>=0.1.8",
     "logfire[httpx]>=4.2.0",
     "marimo>=0.14.16",
     "nest-asyncio>=1.6.0",
+    "pendulum>=3.1.0",
     "pydantic-ai-slim[anthropic]>=0.6.2",
     "pydantic-ai[logfire]>=0.6.2",
     "pydantic-settings>=2.10.1",
