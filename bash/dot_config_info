@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Description: Script to display the number of files in the user's ~/.config/
+
+path="${HOME}/.config"
+num_files=$(find "${path}" -type f | wc -l)
+
+echo "===== INFO  ====="
+echo "Executing script on day: $(date +%Y-%m-%d)"
+echo "Finding information for user: ${USER} in ${path}."
+echo ""
+echo "===== SUMMARY ====="
+echo "Number of files in ${USER}'s .config directory: ${num_files}."
+echo "===== END ====="
