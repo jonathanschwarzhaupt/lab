@@ -1,0 +1,14 @@
+#!/bin/bash
+
+case $1 in
+	start)
+		echo "starting services..."
+		;;
+	stop)
+		echo "stopping services..."
+		;;
+	*)
+		echo "Usage: $0 {start|stop}"
+		exit 1
+		;;
+esac

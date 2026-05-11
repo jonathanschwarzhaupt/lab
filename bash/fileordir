@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Description: Uses conditionals and file checks to determine whether a argument is a file or directory.
+
+# Some help ergonomics for the user
+if [[ -z "$1" || "$1" == "--help" ]]; then
+  echo "Usage: $0 <filename>"
+  exit 0
+fi
+
+if [[ -f "$1" ]]; then
+  echo "$1 is a file"
+  exit 0
+elif [[ -d "$1" ]]; then
+  echo "$2 is a directory"
+else
+  echo "$2 not found"
+fi

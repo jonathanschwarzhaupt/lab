@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# Description: Returns information (color) about common fruits.
+
+# Check number of arguments
+
+if [[ $# -ne 1 ]]; then
+  echo "Usage:  $0 <fruit>" >&2
+  exit 1
+fi
+
+fruit=$1
+
+case $fruit in
+  apple)
+    echo "Red"
+    ;;
+  banana)
+    echo "Yellow"
+    ;;
+  strawberry)
+    echo "Red"
+    ;;
+  *)
+    echo "Unknown fruit: $fruit" >&2
+    exit 1
+    ;;
+esac

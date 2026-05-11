@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Description: demonstrates use of parameter expansion to get file parts
+
+filepath="/home/user/report.tar.gz"
+echo "filepath: ${filepath}"
+
+# basename - report.tar.gz
+echo "basename: ${filepath##*/}"
+filename="${filepath##*/}"
+
+# dirname - /home/user
+echo "dirname: ${filepath%/*}"
+
+# extension - .gz
+echo "extension: ${filename##*.}"
+
+# filename - report
+echo "filename: ${filename%%.*}"
