@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Description: Script to validate password length. Pass your password as argument
+
+# Errors out if arg is unset/empty
+password="${1:?password is not set.}"
+
+echo "length: ${#password}"
+
+# check length of pw using '#'
+if [[ ${#password} -lt 8 ]]; then
+  echo "password too short!"
+  exit 1
+fi

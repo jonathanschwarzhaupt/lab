@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Description: Script to learn some parameter expansion
+
+# Remove filename - % removes ".txt" from the right
+filename="document.txt"
+echo "${filename%.txt}"
+
+# Set default value if 'name' is empty or not set
+name=""
+# name="not jonathan"
+echo "hello, ${name:-jonathan}"
+echo "$name"  # prints empty
+
+echo "hello, ${name:=jonathan}"
+echo "$name"  # prints 'jonathan'
+
+# Use arguments
+echo "hello, ${1:-world}"
+echo "first argument: ${1}"
+
+# Use parameter expansion for length
+password="12345"
+echo "Length: ${#password}"
+
+if [[ ${#password} -lt 8 ]]; then
+	echo "Password too short"
+	exit 1
+fi
